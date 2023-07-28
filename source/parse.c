@@ -15,14 +15,9 @@
 int	ft_overflow(char *temp1)
 {
 	char	*temp;
-	int		i;
 
-	i = 0;
 	if (temp1[0] == '+')
-	{
 		temp1++;
-		i++;
-	}
 	temp = ft_itoa(ft_atoi(temp1));
 	if (ft_strncmp(temp1, temp, ft_strlen(temp)) == 0)
 	{
