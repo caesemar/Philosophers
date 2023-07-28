@@ -28,7 +28,6 @@ typedef struct s_philosopher
 	int	number_of_times_each_philosopher_must_eat;
 }	t_philosopher;
 
-
 size_t	ft_strlen(const char *s);
 int		ft_atoi(const char *str);
 void	parse_args(t_philosopher *philo, int argc, char **argv);
@@ -40,7 +39,6 @@ char	*ft_itoa(int n);
 void	is_positive(char **argv, int argc);
 int		ft_atoi(const char *str);
 void	ft_error2(void);
-
+void	print_philo(t_philosopher *philo);
 
 #endif
-
