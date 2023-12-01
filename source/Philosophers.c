@@ -10,14 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/philosophers.h"
+#include "../header/Philosophers.h"
 
 int	main(int argc, char **argv)
 {
 	t_init	init;
 
 	parse_args(&init, argc, argv);
-	print_init(&init);
+	print_philo(&init);
 	return (0);
 }
 
@@ -47,7 +47,10 @@ void	parse_args(t_init *init, int argc, char **argv)
 	else
 		init->number_of_times_each_philosopher_must_eat = -1;
 }
+/*
 void	init(t_philo *philo)
 {
-
+	philo
+	return ;
 }
+*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jocasado <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jocasado <jocasado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 18:28:27 by jocasado          #+#    #+#             */
-/*   Updated: 2023/07/28 18:28:27 by jocasado         ###   ########.fr       */
+/*   Updated: 2023/11/13 14:33:46 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	is_positive(char **argv, int argc)
 	}
 }
 
-void	print_philo(t_philosopher *philo)
+void	print_philo(t_init *philo)
 {
 	printf("number_of_philosophers %d\n", philo->number_of_philosophers);
 	printf("time_to_die %d\n", philo->time_to_die);

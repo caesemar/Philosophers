@@ -6,7 +6,7 @@
 /*   By: jocasado <jocasado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 15:19:15 by jocasado          #+#    #+#             */
-/*   Updated: 2023/11/11 22:48:08 by jocasado         ###   ########.fr       */
+/*   Updated: 2023/12/01 18:44:05 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,12 @@
 # include <sys/time.h>
 # include <limits.h>
 
+/*
 typedef struct table
 {
 
-}
+};
+*/
 typedef struct s_init
 {
 	int	number_of_philosophers;
@@ -44,7 +46,7 @@ typedef struct s_philo
 
 size_t	ft_strlen(const char *s);
 int		ft_atoi(const char *str);
-void	parse_args(t_philosopher *philo, int argc, char **argv);
+void	parse_args(t_init *philo, int argc, char **argv);
 int		ft_isdigit(int c);
 int		ft_overflow(char *temp1);
 void	ft_error_check(char **a);
@@ -53,6 +55,7 @@ char	*ft_itoa(int n);
 void	is_positive(char **argv, int argc);
 int		ft_atoi(const char *str);
 void	ft_error2(void);
-void	print_philo(s_init *philo);
+void	print_philo(t_init *philo);
+void	init(t_philo *philo);
 
 #endif
