@@ -12,6 +12,9 @@
 
 #include "../header/Philosophers.h"
 
+
+//hola prueba 
+
 int	main(int argc, char **argv)
 {
 	t_init	init;
