@@ -6,7 +6,7 @@
 /*   By: jocasado <jocasado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 15:19:15 by jocasado          #+#    #+#             */
-/*   Updated: 2023/12/01 18:44:05 by jocasado         ###   ########.fr       */
+/*   Updated: 2023/12/21 19:19:45 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,6 @@
 # include <sys/time.h>
 # include <limits.h>
 
-/*
-typedef struct table
-{
-
-};
-*/
 typedef struct s_init
 {
 	int	number_of_philosophers;
@@ -37,12 +31,19 @@ typedef struct s_init
 typedef struct s_philo
 {
 	pthread_t	*philosopher;
-	int	time_until_death;
-	int	time_eating;
-	int	time_sleeping;
-	int	time_til_full;
-	int fork;
+	int			id_philo;
+	int			time_until_death;
+	int			time_eating;
+	int			time_sleeping;
+	int			time_til_full;
+	int			left_fork;
+	int			right_fork;
 }	t_philo;
+
+typedef struct s_table
+{
+	t_philo	**philos;
+}	t_table;
 
 size_t	ft_strlen(const char *s);
 int		ft_atoi(const char *str);
@@ -56,6 +57,6 @@ void	is_positive(char **argv, int argc);
 int		ft_atoi(const char *str);
 void	ft_error2(void);
 void	print_philo(t_init *philo);
-void	init(t_philo *philo);
+void	initialize(t_philo *philo, t_init values);
 
 #endif

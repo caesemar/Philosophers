@@ -12,9 +12,6 @@
 
 #include "../header/Philosophers.h"
 
-
-//hola prueba 
-
 int	main(int argc, char **argv)
 {
 	t_init	init;
@@ -50,10 +47,17 @@ void	parse_args(t_init *init, int argc, char **argv)
 	else
 		init->number_of_times_each_philosopher_must_eat = -1;
 }
-/*
-void	init(t_philo *philo)
+
+void	initialize(t_philo *philo, t_init values)
 {
-	philo
-	return ;
+	int		i;
+	t_philo	**philos;
+
+	i = 0;
+	philos = malloc(sizeof (t_philo **));
+	while (i < values.number_of_philosophers)
+	{
+		philo->id_philo = i;
+		i++;
+	}
 }
-*/

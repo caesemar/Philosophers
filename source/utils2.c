@@ -6,7 +6,7 @@
 /*   By: jocasado <jocasado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 18:28:27 by jocasado          #+#    #+#             */
-/*   Updated: 2023/11/13 14:33:46 by jocasado         ###   ########.fr       */
+/*   Updated: 2023/12/21 17:00:58 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	is_positive(char **argv, int argc)
 		ft_error2();
 	while (i < argc)
 	{
-		if (ft_atoi(argv[i]) < 0)
+		if (ft_atoi(argv[i]) <= 0)
 			ft_error2();
 		i++;
 	}
