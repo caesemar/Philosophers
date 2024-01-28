@@ -6,7 +6,7 @@
 /*   By: jocasado <jocasado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 15:19:15 by jocasado          #+#    #+#             */
-/*   Updated: 2024/01/28 22:53:39 by jocasado         ###   ########.fr       */
+/*   Updated: 2024/01/28 23:20:45 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_philo
 	int					time_until_death;
 	int					time_eating;
 	int					time_sleeping;
-	int					eat_counter;
+	int					philo_eat_count;
 	pthread_mutex_t		left_fork;
 	pthread_mutex_t		right_fork;
 }	t_philo;
