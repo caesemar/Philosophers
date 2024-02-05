@@ -6,7 +6,7 @@
 #    By: jocasado <jocasado@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/05 03:06:52 by caesemar          #+#    #+#              #
-#    Updated: 2024/01/28 18:17:30 by jocasado         ###   ########.fr        #
+#    Updated: 2024/02/05 01:36:46 by jocasado         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ CFILES = \
 		source/Philosophers.c\
 		source/utils.c\
 		source/utils2.c\
+		source/utils3.c\
 		source/ft_itoa.c\
 		source/parse.c\
 		source/actions.c\

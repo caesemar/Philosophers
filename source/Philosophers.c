@@ -15,7 +15,7 @@
 int	main(int argc, char **argv)
 {
 	t_init	init;
-	t_philo	philosophers;
+	t_philo	*philosophers;
 
 	if (parse_args(&init, argc, argv) == 1)
 	{
@@ -30,7 +30,7 @@ int	main(int argc, char **argv)
 		printf("Error on malloc initialization\n");
 		return (1);
 	}
-	if (init_philos(init, &philosophers))
+	if (init_philos(init, philosophers) == 1)
 		return (1);
 	return (0);
 }
@@ -60,7 +60,7 @@ int	parse_args(t_init *init, int argc, char **argv)
 
 void	init_initvalues(t_init *init, int argc, char **argv)
 {
-	init->number_of_philosophers = ft_atoi(argv[1]);
+	init->phil_num = ft_atoi(argv[1]);
 	init->time_to_die = ft_atoi(argv[2]);
 	init->time_to_eat = ft_atoi(argv[3]);
 	init->time_to_sleep = ft_atoi(argv[4]);
