@@ -6,7 +6,7 @@
 /*   By: jocasado <jocasado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 15:19:15 by jocasado          #+#    #+#             */
-/*   Updated: 2024/02/05 02:27:26 by jocasado         ###   ########.fr       */
+/*   Updated: 2024/02/22 22:39:25 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_init
 	int					eat_counter;
 	int					stop;
 	pthread_mutex_t		m_print;
-	pthread_mutex_t		m_stop;
+	pthread_mutex_t		m_dead;
 }	t_init;
 
 typedef struct s_philo
@@ -47,6 +47,7 @@ typedef struct s_philo
 	int					left_fork_value;
 	pthread_mutex_t		left_fork;
 	pthread_mutex_t		*right_fork;
+	pthread_mutex_t		meal_lock;
 	t_init				*values;
 }	t_philo;
 
@@ -72,8 +73,8 @@ int		init_forks(t_philo *ph, int nbr_philos);
 void	eat(t_philo *philo);
 void	think(t_philo *philo);
 void	sleep_action(t_philo *philo);
-void	death(t_philo *philo);
-void	print_actions(t_philo *philo);
+int		death(t_philo *philo);
+void	print_message(char *str, t_philo *philo, int id);
 void	free_all(t_philo *philosophers);
 int		init_mutex(t_philo *ph, t_init *init);
 int		lock_stop(t_init *init);

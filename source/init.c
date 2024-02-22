@@ -6,7 +6,7 @@
 /*   By: jocasado <jocasado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 17:36:35 by jocasado          #+#    #+#             */
-/*   Updated: 2024/02/05 02:31:19 by jocasado         ###   ########.fr       */
+/*   Updated: 2024/02/22 22:53:04 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,26 @@
 int	init_philos(t_init values, t_philo *philo)
 {
 	int	i;
-	//printf("hola\n");
 	if (init_mutex(philo, &values) == 1)
 		return (1);
 	i = -1;
 	while (++i < values.phil_num)
 	{
 		philo[i].id_philo = i + 1;
+		philo[i].start_time = get_current_time();
+		philo[i].t_from_last_meal = get_current_time();
+		philo[i].values = &values;
+		philo[i].values->stop = 0;
 		philo[i].status = THINK;
 		philo[i].philo_eat_count = values.eat_counter;
 	}
-	init_forks(philo, values.phil_num);
-	if (init_threads(values, philo) == 1)
-	{
-		printf("Error on threads initialization\n");
+	printf("%i hola\n",philo[1].values->time_to_eat);
+	if (init_forks(philo, values.phil_num) == 1)
 		return (1);
-	}
-	//printf ("hola2\n");
+	printf ("hola1\n");
+	if (init_threads(values, philo) == 1)
+		return (1);
+	printf ("hola2\n");
 	return (0);
 }
 
@@ -47,7 +50,7 @@ int	init_threads(t_init values, t_philo *philosophers)
 			return (1);
 		i = i + 2;
 	}
-	usleep(50);
+	ft_usleep(50);
 	i = 1;
 	while (i < values.phil_num)
 	{
@@ -88,16 +91,17 @@ int	init_mutex(t_philo *ph, t_init *init)
 		printf("Mutex init failed\n");
 		return (1);
 	}
-	if (pthread_mutex_init(&init->m_stop, NULL))
+	if (pthread_mutex_init(&init->m_dead, NULL))
 	{
 		printf("Mutex init failed\n");
 		return (1);
 	}
 	while (++i < init->phil_num)
 	{
-		if (pthread_mutex_init(&ph[i].left_fork, NULL))
+		if (pthread_mutex_init(&ph[i].left_fork, NULL) || \
+		pthread_mutex_init(&ph[i].meal_lock, NULL))
 		{
-			printf("Mutex init failed on forks\n");
+			printf("Mutex init failed \n");
 			return (1);
 		}
 	}

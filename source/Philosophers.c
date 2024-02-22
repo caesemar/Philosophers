@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initsophers.c                                     :+:      :+:    :+:   */
+/*   Philosophers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jocasado <jocasado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 15:18:27 by jocasado          #+#    #+#             */
-/*   Updated: 2023/11/11 21:03:26 by jocasado         ###   ########.fr       */
+/*   Updated: 2024/02/22 21:21:28 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	if (init_philos(init, philosophers) == 1)
+	{
+		printf("Error on philosophers initialization\n");
 		return (1);
+	}
 	return (0);
 }
 

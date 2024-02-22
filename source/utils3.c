@@ -6,7 +6,7 @@
 /*   By: jocasado <jocasado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 00:55:46 by jocasado          #+#    #+#             */
-/*   Updated: 2024/02/05 02:24:05 by jocasado         ###   ########.fr       */
+/*   Updated: 2024/02/22 19:59:27 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,24 +29,13 @@ void	free_all(t_philo *philosophers)
 	free(philosophers);
 }
 */
-void	print_actions(t_philo *philo)
+void	print_message(char *str, t_philo *philo, int id)
 {
+	size_t	time;
+
 	pthread_mutex_lock(&philo->values->m_print);
-	if (philo->status == DEAD)
-	{
-		printf("%ld %d died\n", get_current_time() - philo->start_time, \
-		philo->id_philo);
-		pthread_mutex_unlock(&philo->values->m_print);
-		return ;
-	}
-	if (philo->status == EAT)
-		printf("%ld %d is eating\n", get_current_time() - philo->start_time, \
-		philo->id_philo);
-	if (philo->status == SLEEP)
-		printf("%ld %d is sleeping\n", get_current_time() - philo->start_time, \
-		philo->id_philo);
-	if (philo->status == THINK)
-		printf("%ld %d is thinking\n", get_current_time() - philo->start_time, \
-		philo->id_philo);
+	time = get_current_time() - philo->start_time;
+	//if (!dead_loop(philo))
+		printf("%zu %d %s\n", time, id, str);
 	pthread_mutex_unlock(&philo->values->m_print);
 }

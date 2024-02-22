@@ -6,7 +6,7 @@
 /*   By: jocasado <jocasado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 18:28:27 by jocasado          #+#    #+#             */
-/*   Updated: 2024/02/05 01:47:28 by jocasado         ###   ########.fr       */
+/*   Updated: 2024/02/22 19:17:40 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ int	lock_stop(t_init *init)
 {
 	int	stop;
 
-	pthread_mutex_lock(&init->m_stop);
+	pthread_mutex_lock(&init->m_dead);
 	stop = init->stop;
-	pthread_mutex_unlock(&init->m_stop);
+	pthread_mutex_unlock(&init->m_dead);
 	return (stop);
 }
