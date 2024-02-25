@@ -6,7 +6,7 @@
 /*   By: jocasado <jocasado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 17:36:29 by jocasado          #+#    #+#             */
-/*   Updated: 2024/02/22 22:51:53 by jocasado         ###   ########.fr       */
+/*   Updated: 2024/02/25 22:22:51 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,18 @@
 void	*life_actions(void *pointer)
 {
 	t_philo	*philo;
-	printf("estoy en life_actions\n");
+
 	philo = (t_philo *)pointer;
-	if (philo->values->phil_num % 2 == 0)
-		ft_usleep(1);
-	printf("estoy en life_actions2\n");
-	while (!death(philo))
+	if (philo->id_philo % 2 == 0)
+		ft_usleep(2);
+	while (death(philo) == 0)
 	{
 		eat(philo);
+		if (death(philo) == 1)
+			break ;
 		sleep_action(philo);
+		if (death(philo) == 1)
+			break ;
 		think(philo);
 	}
 	return (pointer);
@@ -31,7 +34,6 @@ void	*life_actions(void *pointer)
 
 void	eat(t_philo *philo)
 {
-	printf("estoy en eat\n");
 	pthread_mutex_lock(philo->right_fork);
 	print_message("has taken a fork", philo, philo->id_philo);
 	if (philo->values->phil_num == 1)
@@ -44,26 +46,25 @@ void	eat(t_philo *philo)
 	print_message("has taken a fork", philo, philo->id_philo);
 	philo->status = EAT;
 	print_message("is eating", philo, philo->id_philo);
-	pthread_mutex_lock(&philo->meal_lock);
+	pthread_mutex_lock(philo->meal_lock);
 	philo->t_from_last_meal = get_current_time();
-	philo->philo_eat_count--;
-	pthread_mutex_unlock(&philo->meal_lock);
+	philo->philo_eat_count++;
+	pthread_mutex_unlock(philo->meal_lock);
 	ft_usleep(philo->values->time_to_eat);
-	//philo->eating = 0;
+	philo->status = SLEEP;
 	pthread_mutex_unlock(&philo->left_fork);
 	pthread_mutex_unlock(philo->right_fork);
 }
 
 void	think(t_philo *philo)
 {
-	philo->status = EAT;
+	philo->status = THINK;
 	print_message("is thinking", philo, philo->id_philo);
-	ft_usleep(philo->values->time_to_sleep);
 }
 
 void	sleep_action(t_philo *philo)
 {
-	philo->status = THINK;
+	philo->status = SLEEP;
 	print_message("is sleeping", philo, philo->id_philo);
 	ft_usleep(philo->values->time_to_sleep);
 }

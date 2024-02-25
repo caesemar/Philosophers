@@ -6,7 +6,7 @@
 #    By: jocasado <jocasado@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/05 03:06:52 by caesemar          #+#    #+#              #
-#    Updated: 2024/02/22 20:05:08 by jocasado         ###   ########.fr        #
+#    Updated: 2024/02/25 19:55:53 by jocasado         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ CFILES = \
 		source/ft_itoa.c\
 		source/parse.c\
 		source/actions.c\
-		source/init.c
+		source/init.c\
+		source/things.c
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
 OBJS = $(CFILES:.c=.o)
 ################################################################################

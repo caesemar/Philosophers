@@ -6,41 +6,42 @@
 /*   By: jocasado <jocasado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 17:36:35 by jocasado          #+#    #+#             */
-/*   Updated: 2024/02/22 22:53:04 by jocasado         ###   ########.fr       */
+/*   Updated: 2024/02/25 22:33:07 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/Philosophers.h"
 
-int	init_philos(t_init values, t_philo *philo)
+int	init_philos(t_init *values, t_philo *philo)
 {
 	int	i;
-	if (init_mutex(philo, &values) == 1)
+
+	if (init_mutex(philo, values) == 1)
 		return (1);
 	i = -1;
-	while (++i < values.phil_num)
+	while (++i < values->phil_num)
 	{
 		philo[i].id_philo = i + 1;
 		philo[i].start_time = get_current_time();
 		philo[i].t_from_last_meal = get_current_time();
-		philo[i].values = &values;
-		philo[i].values->stop = 0;
+		philo[i].values = values;
+		values->stop = 0;
 		philo[i].status = THINK;
-		philo[i].philo_eat_count = values.eat_counter;
+		philo[i].meal_lock = &values->meal_lock;
+		philo[i].philo_eat_count = 0;
 	}
-	printf("%i hola\n",philo[1].values->time_to_eat);
-	if (init_forks(philo, values.phil_num) == 1)
+	if (init_forks(philo, values->phil_num) == 1)
 		return (1);
-	printf ("hola1\n");
-	if (init_threads(values, philo) == 1)
+	if (init_threads(*values, philo) == 1)
 		return (1);
-	printf ("hola2\n");
+	wait_threads(philo, values->phil_num);
 	return (0);
 }
 
 int	init_threads(t_init values, t_philo *philosophers)
 {
-	int	i;
+	int			i;
+	pthread_t	detective;
 
 	i = 0;
 	while (i < values.phil_num)
@@ -50,7 +51,7 @@ int	init_threads(t_init values, t_philo *philosophers)
 			return (1);
 		i = i + 2;
 	}
-	ft_usleep(50);
+	ft_usleep(100);
 	i = 1;
 	while (i < values.phil_num)
 	{
@@ -59,6 +60,9 @@ int	init_threads(t_init values, t_philo *philosophers)
 			return (1);
 		i = i + 2;
 	}
+	if (pthread_create(&detective, NULL, &detect_death, philosophers))
+		return (1);
+	pthread_join(detective, NULL);
 	return (0);
 }
 
@@ -86,7 +90,8 @@ int	init_mutex(t_philo *ph, t_init *init)
 	int	i;
 
 	i = -1;
-	if (pthread_mutex_init(&init->m_print, NULL))
+	if (pthread_mutex_init(&init->m_print, NULL) ||\
+	 pthread_mutex_init(&init->meal_lock, NULL))
 	{
 		printf("Mutex init failed\n");
 		return (1);
@@ -98,8 +103,7 @@ int	init_mutex(t_philo *ph, t_init *init)
 	}
 	while (++i < init->phil_num)
 	{
-		if (pthread_mutex_init(&ph[i].left_fork, NULL) || \
-		pthread_mutex_init(&ph[i].meal_lock, NULL))
+		if (pthread_mutex_init(&ph[i].left_fork, NULL))
 		{
 			printf("Mutex init failed \n");
 			return (1);

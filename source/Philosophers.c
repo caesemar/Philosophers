@@ -6,7 +6,7 @@
 /*   By: jocasado <jocasado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 15:18:27 by jocasado          #+#    #+#             */
-/*   Updated: 2024/02/22 21:21:28 by jocasado         ###   ########.fr       */
+/*   Updated: 2024/02/25 20:10:00 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int argc, char **argv)
 		printf("Error on malloc initialization\n");
 		return (1);
 	}
-	if (init_philos(init, philosophers) == 1)
+	if (init_philos(&init, philosophers) == 1)
 	{
 		printf("Error on philosophers initialization\n");
 		return (1);
@@ -58,6 +58,8 @@ int	parse_args(t_init *init, int argc, char **argv)
 	if (is_positive(argv, argc) == 1)
 		return (1);
 	init_initvalues(init, argc, argv);
+	if (init->phil_num > 200)
+		return (1);
 	return (0);
 }
 
