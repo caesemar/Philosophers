@@ -6,7 +6,7 @@
 /*   By: jocasado <jocasado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 17:36:29 by jocasado          #+#    #+#             */
-/*   Updated: 2024/02/25 22:22:51 by jocasado         ###   ########.fr       */
+/*   Updated: 2024/02/25 22:43:54 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ void	*life_actions(void *pointer)
 	t_philo	*philo;
 
 	philo = (t_philo *)pointer;
-	if (philo->id_philo % 2 == 0)
-		ft_usleep(2);
 	while (death(philo) == 0)
 	{
 		eat(philo);

@@ -6,7 +6,7 @@
 /*   By: jocasado <jocasado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 17:36:35 by jocasado          #+#    #+#             */
-/*   Updated: 2024/02/25 22:33:07 by jocasado         ###   ########.fr       */
+/*   Updated: 2024/02/25 22:41:14 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,8 @@ int	init_mutex(t_philo *ph, t_init *init)
 	int	i;
 
 	i = -1;
-	if (pthread_mutex_init(&init->m_print, NULL) ||\
-	 pthread_mutex_init(&init->meal_lock, NULL))
+	if (pthread_mutex_init(&init->m_print, NULL) || \
+	pthread_mutex_init(&init->meal_lock, NULL))
 	{
 		printf("Mutex init failed\n");
 		return (1);
