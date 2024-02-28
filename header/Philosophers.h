@@ -6,7 +6,7 @@
 /*   By: jocasado <jocasado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 15:19:15 by jocasado          #+#    #+#             */
-/*   Updated: 2024/02/25 22:28:02 by jocasado         ###   ########.fr       */
+/*   Updated: 2024/02/28 00:57:41 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_itoa(int n);
 int		is_positive(char **argv, int argc);
 int		ft_atoi(const char *str);
-void	print_philo(t_init *philo);
 int		init_threads(t_init values, t_philo *philosophers);
 int		init_philos(t_init *values, t_philo *philo);
 void	*life_actions(void *philo);

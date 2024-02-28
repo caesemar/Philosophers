@@ -6,7 +6,7 @@
 /*   By: jocasado <jocasado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 18:28:27 by jocasado          #+#    #+#             */
-/*   Updated: 2024/02/25 22:03:40 by jocasado         ###   ########.fr       */
+/*   Updated: 2024/02/28 00:57:29 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,6 @@ int	is_positive(char **argv, int argc)
 		i++;
 	}
 	return (0);
-}
-
-void	print_philo(t_init *philo)
-{
-	printf("number_of_philosophers %d\n", philo->phil_num);
-	printf("time_to_die %ld\n", philo->time_to_die);
-	printf("time_to_eat %ld\n", philo->time_to_eat);
-	printf("time_to_sleep %ld\n", philo->time_to_sleep);
-	printf("number_of_times_each_philosopher_must_eat %d\n", \
-	philo->eat_counter);
 }
 
 size_t	get_current_time(void)

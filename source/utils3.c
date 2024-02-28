@@ -6,7 +6,7 @@
 /*   By: jocasado <jocasado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 00:55:46 by jocasado          #+#    #+#             */
-/*   Updated: 2024/02/25 22:19:50 by jocasado         ###   ########.fr       */
+/*   Updated: 2024/02/28 01:51:22 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	print_message(char *str, t_philo *philo, int id)
 	pthread_mutex_unlock(&philo->values->m_print);
 }
 
-int	philosopher_dead(t_philo *philo, size_t time_to_die)
+static int	check_philosopher_dead(t_philo *philo, size_t time_to_die)
 {
 	pthread_mutex_lock(philo->meal_lock);
 	if (get_current_time() - philo->t_from_last_meal >= time_to_die
@@ -36,14 +36,14 @@ int	philosopher_dead(t_philo *philo, size_t time_to_die)
 	return (0);
 }
 
-int	check_if_dead(t_philo *philos)
+static int	check_dead(t_philo *philos)
 {
 	int	i;
 
 	i = 0;
 	while (i < philos[0].values->phil_num)
 	{
-		if (philosopher_dead(&philos[i], philos[i].values->time_to_die))
+		if (check_philosopher_dead(&philos[i], philos[i].values->time_to_die))
 		{
 			print_message("died", &philos[i], philos[i].id_philo);
 			pthread_mutex_lock(&philos[0].values->m_dead);
@@ -56,7 +56,7 @@ int	check_if_dead(t_philo *philos)
 	return (0);
 }
 
-int	check_if_all_ate(t_philo *philos)
+static int	check_all_ate(t_philo *philos)
 {
 	int	i;
 	int	finished_eating;
@@ -90,7 +90,7 @@ void	*detect_death(void *pointer)
 	philos = (t_philo *)pointer;
 	while (1)
 	{
-		if (check_if_dead(philos) == 1 || check_if_all_ate(philos) == 1)
+		if (check_dead(philos) == 1 || check_all_ate(philos) == 1)
 			break ;
 	}
 	return (pointer);

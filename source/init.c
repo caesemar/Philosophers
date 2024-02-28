@@ -6,7 +6,7 @@
 /*   By: jocasado <jocasado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 17:36:35 by jocasado          #+#    #+#             */
-/*   Updated: 2024/02/25 22:41:14 by jocasado         ###   ########.fr       */
+/*   Updated: 2024/02/28 01:52:32 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ int	init_threads(t_init values, t_philo *philosophers)
 			return (1);
 		i = i + 2;
 	}
-	ft_usleep(100);
+	if (values.phil_num != 1 || values.time_to_die >= 100)
+		ft_usleep(100);
 	i = 1;
 	while (i < values.phil_num)
 	{

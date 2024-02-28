@@ -6,7 +6,7 @@
 #    By: jocasado <jocasado@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/05 03:06:52 by caesemar          #+#    #+#              #
-#    Updated: 2024/02/25 19:55:53 by jocasado         ###   ########.fr        #
+#    Updated: 2024/02/28 01:10:31 by jocasado         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,20 @@ clean:
 			@$(RM) $(OBJS)
 			@echo "$(YELLOW)deleting...\n$(RED)$(OBJS) deleted"
 
+test1: all
+	./philo 1 800 200 200 # mueren
+
+test2: all
+	./philo 5 800 200 200 # viven
+
+test3: all
+	./philo 5 800 200 200 7 #viven y cada uno come 7 veces
+
+test4: all
+	./philo 4 410 200 200 #viven
+
+test5: all
+	./philo 4 310 200 100 #mueren
 ##COLOURS##
 GREEN = \033[1;32m
 YELLOW = \033[1;33m

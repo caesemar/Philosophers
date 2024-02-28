@@ -6,7 +6,7 @@
 /*   By: jocasado <jocasado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 17:36:29 by jocasado          #+#    #+#             */
-/*   Updated: 2024/02/25 22:43:54 by jocasado         ###   ########.fr       */
+/*   Updated: 2024/02/28 01:46:21 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	eat(t_philo *philo)
 	print_message("has taken a fork", philo, philo->id_philo);
 	if (philo->values->phil_num == 1)
 	{
-		ft_usleep(philo->values->time_to_die);
+		ft_usleep(philo->values->time_to_die + philo->values->time_to_eat);
 		pthread_mutex_unlock(philo->right_fork);
 		return ;
 	}
@@ -50,8 +50,8 @@ void	eat(t_philo *philo)
 	pthread_mutex_unlock(philo->meal_lock);
 	ft_usleep(philo->values->time_to_eat);
 	philo->status = SLEEP;
-	pthread_mutex_unlock(&philo->left_fork);
 	pthread_mutex_unlock(philo->right_fork);
+	pthread_mutex_unlock(&philo->left_fork);
 }
 
 void	think(t_philo *philo)

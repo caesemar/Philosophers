@@ -6,7 +6,7 @@
 /*   By: jocasado <jocasado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 15:18:27 by jocasado          #+#    #+#             */
-/*   Updated: 2024/02/25 20:10:00 by jocasado         ###   ########.fr       */
+/*   Updated: 2024/02/28 00:55:38 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	main(int argc, char **argv)
 		printf ("Error on parse\n");
 		return (1);
 	}
-	print_philo(&init);
 	philosophers = NULL;
 	philosophers = (t_philo *) malloc(sizeof(t_philo) * init.phil_num);
 	if (philosophers == NULL)
@@ -58,8 +57,11 @@ int	parse_args(t_init *init, int argc, char **argv)
 	if (is_positive(argv, argc) == 1)
 		return (1);
 	init_initvalues(init, argc, argv);
-	if (init->phil_num > 200)
+	if (init->phil_num > 250)
+	{
+		printf("Error: Too many philosophers\n");
 		return (1);
+	}
 	return (0);
 }
 
