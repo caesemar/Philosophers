@@ -6,7 +6,7 @@
 /*   By: jocasado <jocasado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 18:28:27 by jocasado          #+#    #+#             */
-/*   Updated: 2024/02/28 00:57:29 by jocasado         ###   ########.fr       */
+/*   Updated: 2024/02/28 18:41:48 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,20 @@ int	ft_usleep(size_t miliseconds)
 	while ((get_current_time() - start) < miliseconds)
 		usleep(500);
 	return (0);
+}
+
+void	wait_threads(t_philo *ph, int nbr_philos)
+{
+	int	i;
+
+	i = -1;
+	while (++i < nbr_philos)
+		pthread_join(ph[i].thread, NULL);
+	i = -1;
+	while (++i < nbr_philos)
+		pthread_mutex_destroy(&ph[i].left_fork);
+	pthread_mutex_destroy(&ph[0].values->m_print);
+	pthread_mutex_destroy(&ph[0].values->m_dead);
+	pthread_mutex_destroy(&ph[0].values->meal_lock);
+	free(ph);
 }

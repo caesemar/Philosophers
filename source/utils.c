@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jocasado <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jocasado <jocasado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 15:18:49 by jocasado          #+#    #+#             */
-/*   Updated: 2023/07/28 15:18:49 by jocasado         ###   ########.fr       */
+/*   Updated: 2024/02/28 20:10:20 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	ft_atoi(const char *str)
 	j = 0;
 	i = espacios (str);
 	if (i < 0)
-	{	
+	{
 		i = -i;
 		signo = -1;
 	}

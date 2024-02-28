@@ -6,7 +6,7 @@
 /*   By: jocasado <jocasado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 17:36:29 by jocasado          #+#    #+#             */
-/*   Updated: 2024/02/28 01:46:21 by jocasado         ###   ########.fr       */
+/*   Updated: 2024/02/28 19:13:57 by jocasado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void	eat(t_philo *philo)
 
 void	think(t_philo *philo)
 {
-	philo->status = THINK;
 	print_message("is thinking", philo, philo->id_philo);
 }
 

@@ -23,7 +23,7 @@ static int	num_len(int n)
 	if (n == 0)
 		return (1);
 	while (i != 0)
-	{	
+	{
 		i = i / 10;
 		j++;
 	}
@@ -61,7 +61,7 @@ char	*ft_itoa(int n)
 		return (0);
 	num[j] = 0;
 	while (j--)
-	{	
+	{
 		num[j] = (i % 10) + '0';
 		i = i / 10;
 	}

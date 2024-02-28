@@ -6,12 +6,12 @@
 #    By: jocasado <jocasado@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/05 03:06:52 by caesemar          #+#    #+#              #
-#    Updated: 2024/02/28 01:10:31 by jocasado         ###   ########.fr        #
+#    Updated: 2024/02/28 19:50:00 by jocasado         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
-CFLAGS = -c -pthread -Wall -Wextra -Werror
+CFLAGS = -c -pthread -Wall -Wextra -Werror #-fsanitize=thread
 NAME = philo
 RM = rm -rf
 HDRS = -I ./header/
@@ -26,8 +26,7 @@ CFILES = \
 		source/ft_itoa.c\
 		source/parse.c\
 		source/actions.c\
-		source/init.c\
-		source/things.c
+		source/init.c
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
 OBJS = $(CFILES:.c=.o)
 ################################################################################
@@ -38,7 +37,7 @@ all:        $(NAME)
 
 $(NAME):	$(OBJS)
 			@echo "$(YELLOW)compiling ..."
-			@$(CC) $(OBJS) -o  $(NAME)
+			@$(CC) $(OBJS) -o $(NAME)
 			@echo "$(GREEN)compiled:$(NAME) build ✅"
 .c.o:
 			@${CC} ${CFLAGS} $^ -o $@ ${HDRS}
